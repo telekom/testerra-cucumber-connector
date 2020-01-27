@@ -8,3 +8,7 @@ gradle/
 .idea/
 .iml
 
+#generated things
+build
+target
+testerra-report
