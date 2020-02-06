@@ -7,8 +7,8 @@ project.ext {
 }
 
 dependencies {
-    testImplementation 'io.cucumber:cucumber-java:' + cucumberVersion
-    testImplementation 'io.cucumber:cucumber-testng:' + cucumberVersion
+    implementation 'io.cucumber:cucumber-java:' + cucumberVersion
+    implementation 'io.cucumber:cucumber-testng:' + cucumberVersion
     implementation 'eu.tsystems.mms.tic.testerra:driver-ui-desktop:' + testerraVersion
 }
 
