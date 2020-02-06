@@ -10,6 +10,6 @@ Feature: google search
 
     Examples:
       | searchterm | searchresult |
-      | Wikipedia | Wikipedia, die freie Enzyklopädie |
+      | Wikipedia | Wikipedia, die freie EnzyklopÃ¤die |
       | tagesschau | Tagesschau |
-      | heise | heise online - IT-News, Nachrichten und Hintergründe |
+      | heise | heise online - IT-News, Nachrichten und Hintergrï¿½nde |

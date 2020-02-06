@@ -28,14 +28,12 @@ public class StepDefinitions {
 
     @When("the user searches for {string}")
     public void iSearchFor(String searchInput) {
-        TestStep.begin("the user searches for \"" + searchInput + "\"");
         GoogleSearchPage googleSearchPage = PageFactory.create(GoogleSearchPage.class, driver);
         googleSearchPage.searchTerm(searchInput);
     }
 
     @Then("an entry for {string} is shown")
     public void anEntryForIsShown(String resultEntryText) {
-        TestStep.begin("an entry for \"" + resultEntryText + "\" is shown");
         GoogleSearchResultPage googleSearchResultPage = PageFactory.create(GoogleSearchResultPage.class, driver);
         Assert.assertTrue(googleSearchResultPage.containsResult(resultEntryText), "An entry for \"" + resultEntryText + "\" is shown");
     }
