@@ -10,6 +10,7 @@ import cucumber.api.event.TestStepStarted;
 import eu.tsystems.mms.tic.testframework.report.model.steps.TestStep;
 import eu.tsystems.mms.tic.testframework.utils.UITestUtils;
 import eu.tsystems.mms.tic.testframework.webdrivermanager.WebDriverManager;
+import org.apache.commons.text.StringEscapeUtils;
 
 public class TesterraReportPlugin implements ConcurrentEventListener {
 
@@ -20,7 +21,7 @@ public class TesterraReportPlugin implements ConcurrentEventListener {
     private EventHandler<TestStepStarted> testStepStartedEventHandler = event -> {
         if (event.testStep instanceof PickleStepTestStep) {
             PickleStepTestStep step = (PickleStepTestStep) event.testStep;
-            TestStep.begin(step.getStepText());
+            TestStep.begin(StringEscapeUtils.escapeHtml4(step.getStepText()));
             UITestUtils.takeScreenshot(WebDriverManager.getWebDriver(), true);
         }
     };

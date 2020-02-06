@@ -1,7 +1,6 @@
 package steps;
 
 import eu.tsystems.mms.tic.testframework.pageobjects.factory.PageFactory;
-import eu.tsystems.mms.tic.testframework.report.model.steps.TestStep;
 import eu.tsystems.mms.tic.testframework.webdrivermanager.WebDriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
