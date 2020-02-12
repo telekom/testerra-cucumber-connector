@@ -13,15 +13,11 @@ public class TesterraCucumberListener extends TesterraListener {
     static {
         TesterraEventService.addListener(testerraEvent -> {
             ITesterraEventType iTesterraEventType = testerraEvent.getTesterraEventType();
-            if (iTesterraEventType instanceof TesterraEventType) {
-                TesterraEventType testerraEventType = (TesterraEventType) iTesterraEventType;
-                if (testerraEventType.equals(TesterraEventType.CONTEXT_UPDATE)) {
-                    if (testerraEvent.getData().get(TesterraEventDataType.CONTEXT) instanceof MethodContext) {
-                        MethodContext context = (MethodContext) testerraEvent.getData().get(TesterraEventDataType.CONTEXT);
-                        if (context.methodType.equals(MethodType.TEST_METHOD)) {
-                            context.name = "scenario: " + context.parameters.get(0).toString();
-                        }
-                    }
+            if (iTesterraEventType.equals(TesterraEventType.CONTEXT_UPDATE)
+                    && testerraEvent.getData().get(TesterraEventDataType.CONTEXT) instanceof MethodContext) {
+                MethodContext context = (MethodContext) testerraEvent.getData().get(TesterraEventDataType.CONTEXT);
+                if (context.methodType.equals(MethodType.TEST_METHOD)) {
+                    context.name = "scenario: " + context.parameters.get(0).toString();
                 }
             }
         });
