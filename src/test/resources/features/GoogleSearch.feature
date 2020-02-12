@@ -9,7 +9,7 @@ Feature: google search
     Then an entry for "<searchresult>" is shown
 
     Examples:
-      | searchterm | searchresult |
-      | Wikipedia | Wikipedia, die freie Enzyklopädie |
-      | tagesschau | Tagesschau |
-      | heise | heise online - IT-News, Nachrichten und Hintergr�nde |
+      | searchterm | searchresult                                         |
+      | Wikipedia  | Wikipedia, die freie Enzyklopädie                    |
+      | tagesschau | Tagesschau                                           |
+      | heise      | heise online - IT-News, Nachrichten und Hintergründe |
