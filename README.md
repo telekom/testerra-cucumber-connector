@@ -29,6 +29,6 @@ from the Gherkin scripts though (i.e. feature , scenario and step names).
     @Listeners(TesterraCucumberListener.class)
     @CucumberOptions(plugin = {"eu.tsystems.mms.tic.testerra.cucumber.plugin.TesterraReportPlugin"},
                               features = "src/test/resources/features/", glue = "steps")
-    public class RunCucumberTest extends AbstractTestNGCucumberTests {
+    public class RunTesterraCucumberTest extends AbstractTestNGCucumberTests {
     }
     ```
