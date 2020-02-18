@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 
 public class GoogleSearchPage extends Page {
 
-    protected GuiElement inputSearch = new GuiElement(driver, By.xpath("//input[@title='Suche']"));
+    protected GuiElement inputSearch = new GuiElement(getWebDriver(), By.xpath("//input[@title='Suche']"));
 
     public GoogleSearchPage(WebDriver driver) {
         super(driver);
@@ -17,7 +17,6 @@ public class GoogleSearchPage extends Page {
     public GoogleSearchResultPage searchTerm(String term) {
         inputSearch.sendKeys(term);
         inputSearch.submit();
-        By.tagName("test");
-        return PageFactory.create(GoogleSearchResultPage.class, driver);
+        return PageFactory.create(GoogleSearchResultPage.class, getWebDriver());
     }
 }

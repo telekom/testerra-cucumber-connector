@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 public class GoogleSearchResultPage extends GoogleSearchPage {
 
-    GuiElement resultElements = new GuiElement(driver, By.cssSelector("#rso .g"));
+    GuiElement resultElements = new GuiElement(getWebDriver(), By.cssSelector("#rso .g"));
 
     public GoogleSearchResultPage(WebDriver driver) {
         super(driver);
