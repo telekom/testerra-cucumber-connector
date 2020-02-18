@@ -27,7 +27,7 @@ from the Gherkin scripts though (i.e. feature , scenario and step names).
     import org.testng.annotations.Listeners;
     
     @Listeners(TesterraListener.class)
-    @CucumberOptions(plugin = {"TesterraReportPlugin"},
+    @CucumberOptions(plugin = {"eu.tsystems.mms.tic.testerra.cucumber.plugin.TesterraReportPlugin"},
                               features = "src/test/resources/features/", glue = "steps")
     public class RunTesterraCucumberTest extends AbstractTestNGCucumberTests {
     }
