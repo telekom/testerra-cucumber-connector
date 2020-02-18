@@ -16,18 +16,18 @@ from the Gherkin scripts though (i.e. feature , scenario and step names).
     - `eu.tsystems.mms.tic.testerra:driver-ui-desktop:1-SNAPSHOT`
     - newer Cucumber versions are incompatible with Testerra due to the newer TestNG version used
 - setup:
-    - add the `TesterraCucumberListener` as Listener to you runner class
-    - add the `eu.tsystems.mms.tic.testerra.cucumber.plugin.TesterraReportPlugin` as plugin to your CucumberOptions
+    - add the `TesterraListener` as Listener to you runner class
+    - add the `TesterraReportPlugin` as plugin to your CucumberOptions
     - your runner needs to inherit from `AbstractTestNGCucumberTests`
 - example: 
     ```java
-    import eu.tsystems.mms.tic.testerra.cucumber.plugin.TesterraCucumberListener;
+    import eu.tsystems.mms.tic.testframework.report.TesterraListener;
     import io.cucumber.testng.AbstractTestNGCucumberTests;
     import io.cucumber.testng.CucumberOptions;
     import org.testng.annotations.Listeners;
     
-    @Listeners(TesterraCucumberListener.class)
-    @CucumberOptions(plugin = {"eu.tsystems.mms.tic.testerra.cucumber.plugin.TesterraReportPlugin"},
+    @Listeners(TesterraListener.class)
+    @CucumberOptions(plugin = {"TesterraReportPlugin"},
                               features = "src/test/resources/features/", glue = "steps")
     public class RunTesterraCucumberTest extends AbstractTestNGCucumberTests {
     }
