@@ -32,6 +32,9 @@ from the Gherkin scripts though (i.e. feature , scenario and step names).
     public class RunTesterraCucumberTest extends AbstractTestNGCucumberTests {
     }
     ```
+ - predefined Hooks (requires adding ```eu.tsystems.mms.tic.testerra.cucumber.plugin.TesterraHooks``` to your glue):
+    - @gui tag used with ```tt.cucumber.takeAutomaticScreenshot=true``` in your test.properties to take screenshots on 
+    test failure 
   
 #### Known Issues
 - All features are group as one class in the Testerra report.
