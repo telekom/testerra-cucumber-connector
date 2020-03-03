@@ -33,8 +33,8 @@ from the Gherkin scripts though (i.e. feature , scenario and step names).
     }
     ```
  - predefined Hooks (requires adding ```eu.tsystems.mms.tic.testerra.cucumber.plugin.TesterraHooks``` to your glue):
-    - @gui tag used with ```tt.cucumber.takeAutomaticScreenshot=true``` in your test.properties to take screenshots on 
-    test failure 
+    - @automaticScreenshot tag to take automatic screenshots on test failure. Only works with Scenarios using the 
+    WebDriverManager to get a WebDriver
   
 #### Known Issues
 - All features are group as one class in the Testerra report.
