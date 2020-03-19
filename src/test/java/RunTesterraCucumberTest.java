@@ -5,9 +5,9 @@ import org.testng.annotations.Listeners;
 
 @Listeners(TesterraListener.class)
 @CucumberOptions(
-        plugin = {"eu.tsystems.mms.tic.testerra.cucumber.plugin.TesterraReportPlugin"}
+        plugin = {"TesterraReportPlugin"}
         , features = "src/test/resources/features/"
-        , glue = {"steps","eu.tsystems.mms.tic.testerra.cucumber.plugin"}
+        , glue = {"steps","eu.tsystems.mms.tic.testerra.plugins.cucumber"}
 )
 public class RunTesterraCucumberTest extends AbstractTestNGCucumberTests {
 }

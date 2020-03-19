@@ -27,12 +27,12 @@ from the Gherkin scripts though (i.e. feature , scenario and step names).
     import org.testng.annotations.Listeners;
     
     @Listeners(TesterraListener.class)
-    @CucumberOptions(plugin = {"eu.tsystems.mms.tic.testerra.cucumber.plugin.TesterraReportPlugin"},
+    @CucumberOptions(plugin = {"eu.tsystems.mms.tic.testerra.plugins.cucumber.TesterraReportPlugin"},
                               features = "src/test/resources/features/", glue = "steps")
     public class RunTesterraCucumberTest extends AbstractTestNGCucumberTests {
     }
     ```
- - predefined Hooks (requires adding ```eu.tsystems.mms.tic.testerra.cucumber.plugin.TesterraHooks``` to your glue):
+ - predefined Hooks (requires adding ```eu.tsystems.mms.tic.testerra.plugins.cucumber.TesterraHooks``` to your glue):
     - @automaticScreenshot tag to take automatic screenshots on test failure. Only works with Scenarios using the 
     WebDriverManager to get a WebDriver
   

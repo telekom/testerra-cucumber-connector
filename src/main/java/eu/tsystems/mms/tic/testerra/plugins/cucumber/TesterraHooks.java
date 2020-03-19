@@ -1,4 +1,4 @@
-package eu.tsystems.mms.tic.testerra.cucumber.plugin;
+package eu.tsystems.mms.tic.testerra.plugins.cucumber;
 
 import eu.tsystems.mms.tic.testframework.utils.UITestUtils;
 import eu.tsystems.mms.tic.testframework.webdrivermanager.WebDriverManager;
