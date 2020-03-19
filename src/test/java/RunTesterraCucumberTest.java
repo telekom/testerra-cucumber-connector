@@ -5,7 +5,7 @@ import org.testng.annotations.Listeners;
 
 @Listeners(TesterraListener.class)
 @CucumberOptions(
-        plugin = {"TesterraReportPlugin"}
+        plugin = {"eu.tsystems.mms.tic.testerra.plugins.cucumber.TesterraReportPlugin"}
         , features = "src/test/resources/features/"
         , glue = {"steps","eu.tsystems.mms.tic.testerra.plugins.cucumber"}
 )
