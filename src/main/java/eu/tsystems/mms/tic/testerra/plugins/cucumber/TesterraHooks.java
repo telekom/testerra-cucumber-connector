@@ -7,9 +7,9 @@ import io.cucumber.java.After;
 
 public class TesterraHooks {
 
-    @After("@automaticScreenshot")
+    @After
     public void endStep(Scenario scenario) {
-        if (scenario.isFailed()) {
+        if (scenario.isFailed() && WebDriverManager.hasSessionsActiveInThisThread()) {
             UITestUtils.takeScreenshot(WebDriverManager.getWebDriver(), true);
         }
     }

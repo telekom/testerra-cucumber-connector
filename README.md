@@ -38,6 +38,6 @@ from the Gherkin scripts though (i.e. feature , scenario and step names).
   
 #### Known Issues
 - All features are group as one class in the Testerra report.
-- Screenshots of failed tests will be taken after Cucumber @after (method,steps). You need to implement a hook to take 
-screenshots before any clean up methods run.
+- Screenshots of failed tests will be taken after Cucumber @after (method,steps). Current implementation will most 
+likely take two screenshots. 
 - Anootations from Testerra (e.g. @ExpectedFailed) cannot be used.
