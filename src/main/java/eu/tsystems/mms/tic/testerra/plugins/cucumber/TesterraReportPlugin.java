@@ -1,4 +1,4 @@
-package eu.tsystems.mms.tic.testerra.cucumber.plugin;
+package eu.tsystems.mms.tic.testerra.plugins.cucumber;
 
 import cucumber.api.PickleStepTestStep;
 import cucumber.api.event.ConcurrentEventListener;

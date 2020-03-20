@@ -27,14 +27,17 @@ from the Gherkin scripts though (i.e. feature , scenario and step names).
     import org.testng.annotations.Listeners;
     
     @Listeners(TesterraListener.class)
-    @CucumberOptions(plugin = {"eu.tsystems.mms.tic.testerra.cucumber.plugin.TesterraReportPlugin"},
+    @CucumberOptions(plugin = {"eu.tsystems.mms.tic.testerra.plugins.cucumber.TesterraReportPlugin"},
                               features = "src/test/resources/features/", glue = "steps")
     public class RunTesterraCucumberTest extends AbstractTestNGCucumberTests {
     }
     ```
+ - predefined Hooks (requires adding ```eu.tsystems.mms.tic.testerra.plugins.cucumber.TesterraHooks``` to your glue):
+    - @automaticScreenshot tag to take automatic screenshots on test failure. Only works with Scenarios using the 
+    WebDriverManager to get a WebDriver
   
 #### Known Issues
 - All features are group as one class in the Testerra report.
-- Screenshots of failed tests will be taken after Cucumber @after (method,steps). You need to implement a hook to take 
-screenshots before any clean up methods run.
+- Screenshots of failed tests will be taken after Cucumber @after (method,steps). Current implementation will most 
+likely take two screenshots. 
 - Anootations from Testerra (e.g. @ExpectedFailed) cannot be used.
