@@ -2,8 +2,8 @@ package eu.tsystems.mms.tic.testerra.plugins.cucumber;
 
 import eu.tsystems.mms.tic.testframework.utils.UITestUtils;
 import eu.tsystems.mms.tic.testframework.webdrivermanager.WebDriverManager;
-import io.cucumber.core.api.Scenario;
 import io.cucumber.java.After;
+import io.cucumber.java.Scenario;
 
 public class TesterraHooks {
 

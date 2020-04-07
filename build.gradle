@@ -2,7 +2,7 @@ apply plugin: 'java'
 
 project.ext {
 //    newer versions aren't compatible with current Testerra due to TestNG version difference
-    cucumberVersion = '4.7.1'
+    cucumberVersion = '5.6.0'
     testerraVersion = '1-SNAPSHOT'
 }
 

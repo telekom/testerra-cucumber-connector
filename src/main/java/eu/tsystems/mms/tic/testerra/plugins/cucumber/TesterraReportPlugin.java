@@ -1,10 +1,5 @@
 package eu.tsystems.mms.tic.testerra.plugins.cucumber;
 
-import cucumber.api.PickleStepTestStep;
-import cucumber.api.event.ConcurrentEventListener;
-import cucumber.api.event.EventHandler;
-import cucumber.api.event.EventPublisher;
-import cucumber.api.event.TestStepStarted;
 import eu.tsystems.mms.tic.testframework.events.ITesterraEventType;
 import eu.tsystems.mms.tic.testframework.events.TesterraEventDataType;
 import eu.tsystems.mms.tic.testframework.events.TesterraEventService;
@@ -12,14 +7,19 @@ import eu.tsystems.mms.tic.testframework.events.TesterraEventType;
 import eu.tsystems.mms.tic.testframework.report.model.MethodType;
 import eu.tsystems.mms.tic.testframework.report.model.context.MethodContext;
 import eu.tsystems.mms.tic.testframework.report.model.steps.TestStep;
+import io.cucumber.plugin.ConcurrentEventListener;
+import io.cucumber.plugin.event.EventHandler;
+import io.cucumber.plugin.event.EventPublisher;
+import io.cucumber.plugin.event.PickleStepTestStep;
+import io.cucumber.plugin.event.TestStepStarted;
 import org.apache.commons.text.StringEscapeUtils;
 
 public class TesterraReportPlugin implements ConcurrentEventListener {
 
     private EventHandler<TestStepStarted> testStepStartedEventHandler = event -> {
-        if (event.testStep instanceof PickleStepTestStep) {
-            PickleStepTestStep step = (PickleStepTestStep) event.testStep;
-            TestStep.begin(StringEscapeUtils.escapeHtml4(step.getStepText()));
+        if (event.getTestStep() instanceof PickleStepTestStep) {
+            PickleStepTestStep step = (PickleStepTestStep) event.getTestStep();
+            TestStep.begin(StringEscapeUtils.escapeHtml4(step.getStep().getText()));
         }
     };
 
@@ -40,4 +40,5 @@ public class TesterraReportPlugin implements ConcurrentEventListener {
             }
         });
     }
+
 }

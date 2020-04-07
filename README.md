@@ -11,10 +11,9 @@ from the Gherkin scripts though (i.e. feature , scenario and step names).
 
 #### Usage
 - currently works with:
-    - `io.cucumber:cucumber-java:4.7.1`
-    - `io.cucumber:cucumber-testng:4.7.1`
+    - `io.cucumber:cucumber-java:5.6.0`
+    - `io.cucumber:cucumber-testng:5.6.0`
     - `eu.tsystems.mms.tic.testerra:driver-ui-desktop:1-SNAPSHOT`
-    - newer Cucumber versions are incompatible with Testerra due to the newer TestNG version used
 - setup:
     - add the `TesterraListener` as Listener to you runner class
     - add the `TesterraReportPlugin` as plugin to your CucumberOptions
