@@ -1,7 +1,11 @@
 apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+group 'eu.tsystems.mms.tic.testerra'
+version '1-SNAPSHOT'
 
 project.ext {
-//    newer versions aren't compatible with current Testerra due to TestNG version difference
     cucumberVersion = '5.6.0'
     testerraVersion = '1-SNAPSHOT'
 }
@@ -26,3 +30,27 @@ test {
     scanForTestClasses = false
     testLogging.showStandardStreams = true
 }
+
+
+allprojects {
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+            }
+        }
+
+        repositories {
+            maven {
+                url System.getProperty("deployUrl", "none")
+                credentials {
+                    username System.getProperty("deployUsername", "none")
+                    password System.getProperty("deployPassword", "none")
+                }
+            }
+        }
+    }
+}
+
+
