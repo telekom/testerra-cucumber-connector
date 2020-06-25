@@ -1,13 +1,23 @@
+plugins {
+    id "com.jfrog.bintray" version "1.8.5"
+}
+
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
-group 'eu.tsystems.mms.tic.testerra'
-version '1-SNAPSHOT'
+apply from: rootProject.file('release-bintray.gradle')
 
-project.ext {
+ext {
+    testerraVersion = '1.+'
     cucumberVersion = '5.6.0'
-    testerraVersion = '1-SNAPSHOT'
+    moduleVersion = '1-SNAPSHOT'
+    if (System.properties.containsKey('moduleVersion')) {
+        moduleVersion = System.getProperty('moduleVersion')
+    }
+
+    group 'eu.tsystems.mms.tic.testerra'
+    version moduleVersion
 }
 
 dependencies {
@@ -21,36 +31,8 @@ dependencies {
     implementation 'eu.tsystems.mms.tic.testerra:driver-ui-desktop:' + testerraVersion
 }
 
-repositories {
-    mavenCentral()
-}
-
 test {
     useTestNG()
     scanForTestClasses = false
     testLogging.showStandardStreams = true
 }
-
-
-allprojects {
-
-    publishing {
-        publications {
-            mavenJava(MavenPublication) {
-                from components.java
-            }
-        }
-
-        repositories {
-            maven {
-                url System.getProperty("deployUrl", "none")
-                credentials {
-                    username System.getProperty("deployUsername", "none")
-                    password System.getProperty("deployPassword", "none")
-                }
-            }
-        }
-    }
-}
-
-

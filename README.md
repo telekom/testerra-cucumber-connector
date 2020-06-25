@@ -1,4 +1,4 @@
-## Testerrra Cucumber Connector
+# Testerrra Cucumber Extension
 
 Module to run Cucumber test cases with Testerra. While the test execution of Cucumber test cases is easily achievable, 
 some adjustments need to be made to improve reporting. The `TesterraReportPlugin` is required if the report should
@@ -9,7 +9,27 @@ It is also possible to run Cucumber tests with Testerra without the usage of the
 basic `TesterraListener` instead of the `TesterraCucumberListener`. The generated report won't contain any information
 from the Gherkin scripts though (i.e. feature , scenario and step names).
 
-#### Usage
+## Installation
+
+The Testerra Cucumber extension is published to a Bintray repository https://bintray.com/testerra-io.
+
+Include the following dependency in your project.
+
+Gradle:
+````groovy
+implementation 'eu.tsystems.mms.tic.testerra:cucumber-connector:1.0'
+````
+
+Maven:
+````xml
+<dependency>
+    <groupId>eu.tsystems.mms.tic.testerra</groupId>
+    <artifactId>cucumber-connector</artifactId>
+    <version>1.0</version>
+</dependency>
+````
+
+## Usage
 - currently works with:
     - `io.cucumber:cucumber-java:5.6.0`
     - `io.cucumber:cucumber-testng:5.6.0`
@@ -35,8 +55,35 @@ from the Gherkin scripts though (i.e. feature , scenario and step names).
     - @automaticScreenshot tag to take automatic screenshots on test failure. Only works with Scenarios using the 
     WebDriverManager to get a WebDriver
   
-#### Known Issues
+## Known Issues
 - All features are group as one class in the Testerra report.
 - Screenshots of failed tests will be taken after Cucumber @after (method,steps). Current implementation will most 
 likely take two screenshots. 
 - Anootations from Testerra (e.g. @ExpectedFailed) cannot be used.
+
+---
+
+## Publication
+
+### ... to a Maven repo
+
+```sh
+gradle publishToMavenLocal
+```
+or pass then properties via. CLI
+```sh
+gradle publish -DdeployUrl=<repo-url> -DdeployUsername=<repo-user> -DdeployPassword=<repo-password>
+```
+
+Set a custom version
+```shell script
+gradle publish -DmoduleVersion=<version>
+```
+
+### ... to Bintray
+
+Upload and publish this module to Bintray:
+
+````sh
+gradle bintrayUpload -DmoduleVersion=<version> -DBINTRAY_USER=<bintray-user> -DBINTRAY_API_KEY=<bintray-api-key>
+```` 
