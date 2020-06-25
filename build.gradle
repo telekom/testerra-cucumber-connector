@@ -9,7 +9,7 @@ apply plugin: 'maven-publish'
 apply from: rootProject.file('release-bintray.gradle')
 
 ext {
-    testerraVersion = '1.+'
+    testerraVersion = '[1.0-RC,2.0)'
     cucumberVersion = '5.6.0'
     moduleVersion = '1-SNAPSHOT'
     if (System.properties.containsKey('moduleVersion')) {
