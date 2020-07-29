@@ -3,25 +3,25 @@
 This module provides you the opportunity to use Cucumber and Gherkin to specify `.feature` files and combine it with the advantages of Testerra, like reporting, WebDriver management, GuiElement and other.
 The module will register automatically by using Testerra Hooks.
 
-## Setup
+## Installation
 
 Current release: image:https://img.shields.io/bintray/v/testerra-io/Testerra/eu.tsystems.mms.tic.testerra:cucumber-connector?label=Testerra%Cucumber%20connector[Bintray]
 
-Gradle
+The Testerra Cucumber extension is published to a Bintray repository https://bintray.com/testerra-io.
+Include the following dependency in your project.
+
+Gradle:
 ````groovy
 implementation 'eu.tsystems.mms.tic.testerra:cucumber-connector:1.0'
 ````
 
-.Maven
+Maven:
 ````xml
-<!-- pom.xml -->
-<dependencies>
-    <dependency>
-        <groupId>eu.tsystems.mms.tic.testerra</groupId>
-        <artifactId>cucumber-connector</artifactId>
-        <version>1.0</version>
-    </dependency>
-</dependencies>
+<dependency>
+    <groupId>eu.tsystems.mms.tic.testerra</groupId>
+    <artifactId>cucumber-connector</artifactId>
+    <version>1.0</version>
+</dependency>
 ````
 
 ## Usage
@@ -42,6 +42,34 @@ public class RunTesterraCucumberTest extends AbstractTestNGCucumberTests {
 
 You can then write down your `.feature` files and store them into the `src/test/resources/features/` directory, and the associated glue code in `src/test/java/steps` for example.
 
-#### Known Issues
+### Known Issues
 - All features are group as one class in the Testerra report.
 - Annotations from Testerra (e.g. @Fails) cannot be used.
+- Screenshots of failed tests will be taken after Cucumber @after (method,steps). Current implementation will most 
+likely take two screenshots. 
+- Anootations from Testerra (e.g. @ExpectedFailed) cannot be used.
+
+## Publication
+
+### ... to a Maven repo
+
+```sh
+gradle publishToMavenLocal
+```
+or pass then properties via. CLI
+```sh
+gradle publish -DdeployUrl=<repo-url> -DdeployUsername=<repo-user> -DdeployPassword=<repo-password>
+```
+
+Set a custom version
+```shell script
+gradle publish -DmoduleVersion=<version>
+```
+
+### ... to Bintray
+
+Upload and publish this module to Bintray:
+
+````sh
+gradle bintrayUpload -DmoduleVersion=<version> -DBINTRAY_USER=<bintray-user> -DBINTRAY_API_KEY=<bintray-api-key>
+```` 
