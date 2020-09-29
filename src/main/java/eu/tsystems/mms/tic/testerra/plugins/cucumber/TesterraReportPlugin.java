@@ -1,6 +1,7 @@
 package eu.tsystems.mms.tic.testerra.plugins.cucumber;
 
-import eu.tsystems.mms.tic.testframework.events.ContextUpdateEvent;
+import com.google.common.eventbus.Subscribe;
+import eu.tsystems.mms.tic.testframework.events.MethodStartEvent;
 import eu.tsystems.mms.tic.testframework.report.TesterraListener;
 import eu.tsystems.mms.tic.testframework.report.model.context.MethodContext;
 import eu.tsystems.mms.tic.testframework.report.model.steps.TestStep;
@@ -26,9 +27,11 @@ public class TesterraReportPlugin implements ConcurrentEventListener {
     }
 
     static {
-        TesterraListener.getEventBus().register((ContextUpdateEvent.Listener) event -> {
-            if (event.getContext() instanceof MethodContext) {
-                MethodContext context = (MethodContext) event.getContext();
+        TesterraListener.getEventBus().register(new MethodStartEvent.Listener() {
+            @Override
+            @Subscribe
+            public void onMethodStart(MethodStartEvent event) {
+                MethodContext context = event.getMethodContext();
                 if (context.methodType.equals(MethodContext.Type.TEST_METHOD)) {
                     context.name = "scenario: " + context.parameters.get(0).toString();
                 }
