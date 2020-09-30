@@ -1,5 +1,6 @@
 package eu.tsystems.mms.tic.testerra.plugins.cucumber;
 
+import eu.tsystems.mms.tic.testframework.report.TesterraListener;
 import eu.tsystems.mms.tic.testframework.utils.UITestUtils;
 import eu.tsystems.mms.tic.testframework.webdrivermanager.WebDriverManager;
 import io.cucumber.java.After;
@@ -13,4 +14,10 @@ public class TesterraHooks {
             UITestUtils.takeScreenshot(WebDriverManager.getWebDriver(), true);
         }
     }
+
+    @After("@Fails")
+    public void expectedFails() {
+        TesterraListener.getEventBus().register(new AtFailsTestListener());
+    }
+
 }
