@@ -27,6 +27,7 @@ public class TesterraReportPlugin implements ConcurrentEventListener {
     }
 
     static {
+        TesterraListener.getEventBus().register(new CucumberTagListener());
         TesterraListener.getEventBus().register(new MethodStartEvent.Listener() {
             @Override
             @Subscribe
