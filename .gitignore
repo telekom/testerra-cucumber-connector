@@ -11,4 +11,4 @@ gradle/
 #generated things
 build
 target
-testerra-report
+test-report
