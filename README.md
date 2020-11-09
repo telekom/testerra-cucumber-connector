@@ -57,7 +57,8 @@ To use `@Fails` from Testerra on steps definitions the step definitions are requ
 - All features are group as one class in the Testerra report.
 - Screenshots of failed tests will be taken after Cucumber @after (method,steps). Current implementation will most 
 likely take two screenshots. 
-- Annotations from Testerra (e.g. @ExpectedFailed) cannot be used.
+- Annotations from Testerra (e.g. @Fails) cannot be used on a test method level. It can be used on methods within the test
+though.
 
 ## Publication
 
