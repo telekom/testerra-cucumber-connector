@@ -13,4 +13,5 @@ public class TesterraHooks {
             UITestUtils.takeScreenshot(WebDriverManager.getWebDriver(), true);
         }
     }
+
 }

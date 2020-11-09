@@ -42,12 +42,23 @@ public class RunTesterraCucumberTest extends AbstractTestNGCucumberTests {
 
 You can then write down your `.feature` files and store them into the `src/test/resources/features/` directory, and the associated glue code in `src/test/java/steps` for example.
 
+### Features
+#### Fails tag
+Similar to the `@Fails` annotation from Testerra an `@Fails` tag can be added to Scenarios that have known bugs. This will
+mark them as expected failed in the report and add a message if the scenario is successful again. This doesn't allow 
+adding a description of the bug or a link to the ticked id though. To do this you can add the Testerra `@Fails` annotation
+to a test step and fill it with the info. As a side effect any test which uses this step and fails on it will be shown in
+the report as expected failed automatically.
+
+To use `@Fails` from Testerra on steps definitions the step definitions are required to be in a package which has 
+`eu.tsystems.mms.tic` as prefix.
+
 ### Known Issues
 - All features are group as one class in the Testerra report.
-- Annotations from Testerra (e.g. @Fails) cannot be used.
 - Screenshots of failed tests will be taken after Cucumber @after (method,steps). Current implementation will most 
 likely take two screenshots. 
-- Anootations from Testerra (e.g. @ExpectedFailed) cannot be used.
+- Annotations from Testerra (e.g. @Fails) cannot be used on a test method level. It can be used on methods within the test
+though.
 
 ## Publication
 
