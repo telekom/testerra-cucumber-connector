@@ -12,7 +12,7 @@ Include the following dependency in your project.
 
 Gradle:
 ````groovy
-implementation 'eu.tsystems.mms.tic.testerra:cucumber-connector:1.0'
+implementation 'eu.tsystems.mms.tic.testerra:cucumber-connector:1-SNAPSHOT'
 ````
 
 Maven:
@@ -20,7 +20,7 @@ Maven:
 <dependency>
     <groupId>eu.tsystems.mms.tic.testerra</groupId>
     <artifactId>cucumber-connector</artifactId>
-    <version>1.0</version>
+    <version>1-SNAPSHOT</version>
 </dependency>
 ````
 
