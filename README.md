@@ -11,7 +11,7 @@ using `ModuleHook`.
 ### Dependencies
 
 * Latest version: `1-SNAPSHOT`
-* Required Testerra version: `1-0-RC-13`
+* Required Testerra version: `1-0-RC-10`
 
 Include the following dependency in your project.
 
