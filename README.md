@@ -6,12 +6,15 @@ using `ModuleHook`.
 
 ---
 
+## Releases
+
+* Latest Release: `1.0-RC-1`
+
+## Requirements
+
+* Testerra in Version `1.0-RC-10`
+
 ## Usage
-
-### Dependencies
-
-* Latest version: `1-SNAPSHOT`
-* Required Testerra version: `1-0-RC-10`
 
 Include the following dependency in your project.
 
