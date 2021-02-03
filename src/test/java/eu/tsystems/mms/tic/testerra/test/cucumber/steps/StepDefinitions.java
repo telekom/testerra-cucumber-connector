@@ -1,22 +1,22 @@
 package eu.tsystems.mms.tic.testerra.test.cucumber.steps;
 
 import eu.tsystems.mms.tic.testframework.annotations.Fails;
+import eu.tsystems.mms.tic.testframework.logging.Loggable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 import org.testng.log4testng.Logger;
 
-public class StepDefinitions {
-    Logger LOG = Logger.getLogger(StepDefinitions.class);
+public class StepDefinitions implements Loggable {
 
     @When("the user searches for {string}")
     public void iSearchFor(String searchInput) {
-        LOG.info("Search something " + searchInput);
+        log().info("Search something " + searchInput);
     }
 
     @Then("an entry for {string} is shown")
     public void anEntryForIsShown(String resultEntryText) {
-        LOG.info("Assert search result to contain " + resultEntryText);
+        log().info("Assert search result to contain " + resultEntryText);
     }
 
     @Then("it fails")
