@@ -57,24 +57,4 @@ public class CucumberTagListener implements MethodEndEvent.Listener {
             new FailsHandler().handle(event);
         }
     }
-//
-//    private void updateClassContext(MethodContext methodContext, String classContextName) {
-//        Optional<ClassContext> first = methodContext.testContextModel.classContexts.stream().filter(e -> e.name.equals(classContextName)).findFirst();
-//        if (first.isPresent()) {
-//            methodContext.testContextModel.classContexts.stream().filter(e -> !e.equals(first.get())).forEach(e -> e.methodContexts.remove(methodContext));
-//            first.get().methodContexts.add(methodContext);
-//        } else {
-//            methodContext.testContextModel.classContexts.forEach(e -> e.methodContexts.remove(methodContext));
-//            ClassContext classContext = new ClassContext(methodContext.testContextModel, methodContext.executionContext);
-//            classContext.name = classContextName;
-//            classContext.fullClassName = classContext.name;
-//            classContext.simpleClassName = classContext.name;
-//            methodContext.classContext = classContext;
-//            classContext.swi = methodContext.testContextModel.classContexts.element().swi;
-//            classContext.methodContexts.add(methodContext);
-//            methodContext.testContextModel.classContexts.add(classContext);
-//        }
-//        Optional<ClassContext> runTesterraCucumberTest = methodContext.testContextModel.classContexts.stream().filter(e -> e.name.contains("RunTesterraCucumberTest")).findFirst();
-//        runTesterraCucumberTest.ifPresent(classContext -> methodContext.testContextModel.classContexts.remove(classContext));
-//    }
 }
