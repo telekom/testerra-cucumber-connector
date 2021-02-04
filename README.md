@@ -8,11 +8,11 @@ using `ModuleHook`.
 
 ## Releases
 
-* Latest Release: `1.0-RC-1`
+* Latest Release: `1.0-RC-2`
 
 ## Requirements
 
-* Testerra in Version `1.0-RC-10`
+* Testerra in Version `1.0-RC-22`
 
 ## Usage
 
@@ -21,7 +21,7 @@ Include the following dependency in your project.
 Gradle:
 
 ````groovy
-implementation 'eu.tsystems.mms.tic.testerra:cucumber-connector:1.0-RC-1'
+implementation 'eu.tsystems.mms.tic.testerra:cucumber-connector:1.0-RC-2'
 ````
 
 Maven:
@@ -31,7 +31,7 @@ Maven:
 <dependency>
   <groupId>eu.tsystems.mms.tic.testerra</groupId>
   <artifactId>cucumber-connector</artifactId>
-  <version>1.0-RC-1</version>
+  <version>1.0-RC-2</version>
 </dependency>
 ````
 
