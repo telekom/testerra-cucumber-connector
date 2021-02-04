@@ -1,1 +1,3 @@
 rootProject.name = 'cucumber-connector'
+
+//includeBuild "../testerra"
