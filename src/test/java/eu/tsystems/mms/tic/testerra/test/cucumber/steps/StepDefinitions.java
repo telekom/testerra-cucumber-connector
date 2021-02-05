@@ -5,7 +5,6 @@ import eu.tsystems.mms.tic.testframework.logging.Loggable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
-import org.testng.log4testng.Logger;
 
 public class StepDefinitions implements Loggable {
 
