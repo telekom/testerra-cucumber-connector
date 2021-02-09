@@ -8,11 +8,12 @@ using `ModuleHook`.
 
 ## Releases
 
-* Latest Release: `1.0-RC-2`
+* Latest Release: `1.0-RC-3`
+* Compiled against Cucumber: `5.6.0`
 
 ## Requirements
 
-* Testerra in Version `1.0-RC-22`
+* Testerra in Version `1.0-RC-23`
 
 ## Usage
 
@@ -20,20 +21,35 @@ Include the following dependency in your project.
 
 Gradle:
 
-````groovy
-implementation 'eu.tsystems.mms.tic.testerra:cucumber-connector:1.0-RC-2'
-````
+```groovy
+implementation 'eu.tsystems.mms.tic.testerra:cucumber-connector:1.0-RC-3'
+
+cucumberVersion = '5.6.0'
+implementation 'io.cucumber:cucumber-java:' + cucumberVersion
+implementation('io.cucumber:cucumber-testng:' + cucumberVersion) {
+  exclude group: 'com.google.guava', module: 'guava'
+}
+```
 
 Maven:
 
-````xml
-
+```xml
 <dependency>
   <groupId>eu.tsystems.mms.tic.testerra</groupId>
   <artifactId>cucumber-connector</artifactId>
-  <version>1.0-RC-2</version>
+  <version>1.0-RC-3</version>
 </dependency>
-````
+<dependency>
+  <groupId>io.cucumber</groupId>
+  <artifactId>cucumber-java</artifactId>
+  <version>5.6.0</version>
+</dependency>
+<dependency>
+  <groupId>io.cucumber</groupId>
+  <artifactId>cucumber-testng</artifactId>
+  <version>5.6.0</version>
+</dependency>
+```
 
 ## Setup
 
@@ -43,18 +59,22 @@ called `TesterraReportPlugin` like the following code example shows.
 
 Please take note, that the `AbstractTestNGCucumberTests` must be extended.
 
-````java
+```java
+import eu.tsystems.mms.tic.testframework.report.TesterraListener;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
+import org.testng.annotations.Listeners;
 
 @Listeners(TesterraListener.class)
 @CucumberOptions(
-        plugin = {"eu.tsystems.mms.tic.testerra.plugins.cucumber.TesterraReportPlugin"}
-        , features = "src/test/resources/features/"
-        , glue = {"steps", "eu.tsystems.mms.tic.testerra.plugins.cucumber"}
+        plugin = {"eu.tsystems.mms.tic.testerra.plugins.cucumber.TesterraReportPlugin"},
+        features = "src/test/resources/features/",
+        glue = {"package.path.to.step.definitions", "eu.tsystems.mms.tic.testerra.plugins.cucumber"}
 )
 public class RunTesterraCucumberTest extends AbstractTestNGCucumberTests {
 
 }
-````
+```
 
 You can then write down your `.feature` files and store them into the `src/test/resources/features/` directory, and the associated
 glue code in `src/test/java/steps` for example.
