@@ -1,4 +1,4 @@
-package pages;
+package eu.tsystems.mms.tic.testerra.test.cucumber.pages;
 
 import eu.tsystems.mms.tic.testframework.pageobjects.GuiElement;
 import org.openqa.selenium.By;
