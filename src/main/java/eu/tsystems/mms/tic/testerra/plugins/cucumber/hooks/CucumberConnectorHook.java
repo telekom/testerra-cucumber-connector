@@ -21,19 +21,15 @@
 
 package eu.tsystems.mms.tic.testerra.plugins.cucumber.hooks;
 
+import com.google.inject.AbstractModule;
+import com.google.inject.Scopes;
 import eu.tsystems.mms.tic.testerra.plugins.cucumber.CucumberTestNGContextGenerator;
-import eu.tsystems.mms.tic.testframework.hooks.ModuleHook;
-import eu.tsystems.mms.tic.testframework.report.TesterraListener;
+import eu.tsystems.mms.tic.testframework.report.utils.TestNGContextNameGenerator;
 
-public class CucumberConnectorHook implements ModuleHook {
-
-    @Override
-    public void init() {
-        TesterraListener.setContextGenerator(new CucumberTestNGContextGenerator());
-    }
+public class CucumberConnectorHook extends AbstractModule{
 
     @Override
-    public void terminate() {
-
+    protected void configure() {
+        bind(TestNGContextNameGenerator.class).to(CucumberTestNGContextGenerator.class).in(Scopes.SINGLETON);
     }
 }

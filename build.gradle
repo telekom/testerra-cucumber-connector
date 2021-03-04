@@ -10,11 +10,11 @@ apply from: rootProject.file('release-bintray.gradle')
 
 ext {
     // Minimum required Testerra version
-    testerraCompileVersion = '1-SNAPSHOT'
+    testerraCompileVersion = '2-SNAPSHOT'
     // Unit tests use the latest Testerra version
-    testerraTestVersion = '[1.0-RC,2-SNAPSHOT)'
+    testerraTestVersion = '[2.0-RC,3-SNAPSHOT)'
     cucumberVersion = '5.6.0'
-    moduleVersion = '1-SNAPSHOT'
+    moduleVersion = '2-SNAPSHOT'
     if (System.properties.containsKey('moduleVersion')) {
         moduleVersion = System.getProperty('moduleVersion')
     }
@@ -24,6 +24,7 @@ ext {
 }
 
 dependencies {
+    compileOnly 'eu.tsystems.mms.tic.testerra:core:' + testerraCompileVersion
     compileOnly 'io.cucumber:cucumber-java:' + cucumberVersion
     compileOnly('io.cucumber:cucumber-testng:' + cucumberVersion) {
         exclude group: 'com.google.guava', module: 'guava'
