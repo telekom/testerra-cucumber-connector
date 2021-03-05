@@ -8,12 +8,12 @@ using `ModuleHook`.
 
 ## Releases
 
-* Latest Release: `1.0-RC-3`
+* Latest Release: `2.0-RC-1`
 * Compiled against Cucumber: `5.6.0`
 
 ## Requirements
 
-* Testerra in Version `1.0-RC-23`
+* Testerra in Version `2.0-RC-1`
 
 ## Usage
 
@@ -22,7 +22,7 @@ Include the following dependency in your project.
 Gradle:
 
 ```groovy
-implementation 'eu.tsystems.mms.tic.testerra:cucumber-connector:1.0-RC-3'
+implementation 'eu.tsystems.mms.tic.testerra:cucumber-connector:2.0-RC-1'
 
 cucumberVersion = '5.6.0'
 implementation 'io.cucumber:cucumber-java:' + cucumberVersion
@@ -37,7 +37,7 @@ Maven:
 <dependency>
   <groupId>eu.tsystems.mms.tic.testerra</groupId>
   <artifactId>cucumber-connector</artifactId>
-  <version>1.0-RC-3</version>
+  <version>2.0-RC-1</version>
 </dependency>
 <dependency>
   <groupId>io.cucumber</groupId>
