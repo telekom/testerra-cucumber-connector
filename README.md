@@ -1,6 +1,7 @@
 # Testerra Cucumber Connector
 
 <p align="center">
+    <a href="https://mvnrepository.com/artifact/io.testerra/cucumber-connector" title="MavenCentral"><img src="https://img.shields.io/maven-central/v/io.testerra/cucumber-connector?label=Maven%20Central"></a>
     <a href="/../../commits/" title="Last Commit"><img src="https://img.shields.io/github/last-commit/telekom/testerra-cucumber-connector?style=flat"></a>
     <a href="/../../issues" title="Open Issues"><img src="https://img.shields.io/github/issues/telekom/testerra-cucumber-connector?style=flat"></a>
     <a href="./LICENSE" title="License"><img src="https://img.shields.io/badge/License-Apache%202.0-green.svg?style=flat"></a>
@@ -27,8 +28,8 @@ using `ModuleHook`.
 
 ### Requirements
 
-* Testerra in Version `1.0-RC-23`
-* Compiled against Cucumber: `5.6.0`
+![Maven Central](https://img.shields.io/maven-central/v/io.testerra/core/1.0-RC-32?label=Testerra)
+![Maven Central](https://img.shields.io/maven-central/v/io.cucumber/cucumber-java/5.6.0?label=Cucumber)
 
 ### Usage
 
@@ -37,7 +38,7 @@ Include the following dependency in your project.
 Gradle:
 
 ```groovy
-implementation 'eu.tsystems.mms.tic.testerra:cucumber-connector:1.0-RC-3'
+implementation 'io.testerra:cucumber-connector:1.0'
 
 cucumberVersion = '5.6.0'
 implementation 'io.cucumber:cucumber-java:' + cucumberVersion
@@ -50,9 +51,9 @@ Maven:
 
 ```xml
 <dependency>
-  <groupId>eu.tsystems.mms.tic.testerra</groupId>
+  <groupId>io.testerra</groupId>
   <artifactId>cucumber-connector</artifactId>
-  <version>1.0-RC-3</version>
+  <version>1.0</version>
 </dependency>
 <dependency>
   <groupId>io.cucumber</groupId>
