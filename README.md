@@ -126,28 +126,24 @@ You will find the showcase in the folder `src/test/java`.
 
 ## Publication
 
-### ... to a Maven repo
+This module is deployed and published to Maven Central. All JAR files are signed via Gradle signing plugin.
 
-_Publishing to local repo_
-```shell
-gradle publishToMavenLocal
-```
+The following properties have to be set via command line or ``~/.gradle/gradle.properties``
 
-_Publishing to remote repo_
-```shell
-gradle publish -DdeployUrl=<repo-url> -DdeployUsername=<repo-user> -DdeployPassword=<repo-password>
-```
+| Property                      | Description                                         |
+| ----------------------------- | --------------------------------------------------- |
+| `moduleVersion`               | Version of deployed module, default is `1-SNAPSHOT` |
+| `deployUrl`                   | Maven repository URL                                |
+| `deployUsername`              | Maven repository username                           |
+| `deployPassword`              | Maven repository password                           |
+| `signing.keyId`               | GPG private key ID (short form)                     |
+| `signing.password`            | GPG private key password                            |
+| `signing.secretKeyRingFile`   | Path to GPG private key                             |
 
-_Set a custom version_
-```shell
-gradle publish -DmoduleVersion=<version>
-```
-### ... to GitHub Packages
-
-Some hints for using GitHub Packages as Maven repository
-
-* Deploy URL is https://maven.pkg.github.com/OWNER/REPOSITRY
-* As password generate an access token and grant permissions to ``write:packages`` (Settings -> Developer settings -> Personal access token)
+If all properties are set, call the following to build, deploy and release this module:
+````shell
+gradle publish closeAndReleaseRepository
+````
 
 ## Code of Conduct
 
