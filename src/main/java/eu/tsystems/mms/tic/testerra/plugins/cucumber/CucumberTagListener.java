@@ -22,13 +22,14 @@
 package eu.tsystems.mms.tic.testerra.plugins.cucumber;
 
 import com.google.common.eventbus.Subscribe;
-import eu.tsystems.mms.tic.testerra.plugins.cucumber.handlers.FailsHandler;
 import eu.tsystems.mms.tic.testframework.annotations.Fails;
 import eu.tsystems.mms.tic.testframework.events.MethodEndEvent;
 import eu.tsystems.mms.tic.testframework.logging.Loggable;
+import eu.tsystems.mms.tic.testframework.report.TestStatusController;
 import eu.tsystems.mms.tic.testframework.report.model.context.MethodContext;
 import io.cucumber.testng.PickleWrapper;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Optional;
@@ -43,36 +44,74 @@ import java.util.Optional;
  */
 public class CucumberTagListener implements MethodEndEvent.Listener, Loggable {
 
-    private final FailsHandler failsHandler = new FailsHandler();
+    private final Fails emptyFailsAnnotation = new Fails() {
+        @Override
+        public Class<? extends Annotation> annotationType() {
+            return null;
+        }
+
+        @Override
+        public int ticketId() {
+            return 0;
+        }
+
+        @Override
+        public String ticketString() {
+            return null;
+        }
+
+        @Override
+        public String description() {
+            return null;
+        }
+
+        @Override
+        public boolean intoReport() {
+            return false;
+        }
+
+        @Override
+        public String[] validFor() {
+            return new String[0];
+        }
+    };
 
     @Subscribe
     @Override
     public void onMethodEnd(MethodEndEvent event) {
         MethodContext methodContext = event.getMethodContext();
-        Optional<PickleWrapper> pickle = methodContext.getParameterValues().stream()
+        methodContext.getParameterValues().stream()
                 .filter(o -> o instanceof PickleWrapper).map(e -> (PickleWrapper) e)
-                .findFirst();
-
-        pickle.ifPresent(pickleWrapper -> {
-            List<String> tags = pickle.get().getPickle().getTags();
-            tags.forEach(e -> handleTag(e, event));
-        });
+                .findFirst()
+                .ifPresent(pickleWrapper -> {
+                    List<String> tags = pickleWrapper.getPickle().getTags();
+                    tags.forEach(e -> handleTag(e, event));
+                });
 
         Throwable throwable = event.getTestResult().getThrowable();
 
         if (throwable != null) {
             findFailsAnnotationInStackTrace(throwable).ifPresent(fails -> {
                 methodContext.addAnnotation(fails);
-                failsHandler.handle(event);
+                handleFailsAnnotation(event);
             });
         }
 
     }
 
+    private void handleFailsAnnotation(MethodEndEvent event) {
+        if (event.isFailed()) {
+            Method method = event.getMethod();
+            MethodContext methodContext = event.getMethodContext();
+            TestStatusController.setMethodStatus(methodContext, TestStatusController.Status.FAILED_EXPECTED, method);
+        }
+    }
+
     private void handleTag(String tag, MethodEndEvent event) {
         // Direct cucumber fails annotation on scenario
         if (tag.equals("@Fails")) {
-            failsHandler.handle(event);
+            event.getMethodContext().addAnnotation(emptyFailsAnnotation);
+            handleFailsAnnotation(event);
         }
     }
 
