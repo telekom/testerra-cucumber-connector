@@ -28,7 +28,7 @@ ext {
 apply from: rootProject.file('publish.gradle')
 
 dependencies {
-    compileOnly 'eu.tsystems.mms.tic.testerra:core:' + testerraCompileVersion
+    compileOnly 'io.testerra:core:' + testerraCompileVersion
     compileOnly 'io.cucumber:cucumber-java:' + cucumberVersion
     compileOnly('io.cucumber:cucumber-testng:' + cucumberVersion) {
         exclude group: 'com.google.guava', module: 'guava'
