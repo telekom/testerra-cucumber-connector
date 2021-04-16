@@ -86,21 +86,44 @@ public class CucumberTagListener implements MethodEndEvent.Listener, Loggable {
                 .findFirst()
                 .ifPresent(pickleWrapper -> {
                     List<String> tags = pickleWrapper.getPickle().getTags();
-                    tags.forEach(e -> handleTag(e, event));
+                    tags.forEach(e -> handleCucumberTag(e, event));
                 });
 
         Throwable throwable = event.getTestResult().getThrowable();
 
         if (throwable != null) {
+            /**
+             * Search for {@link Fails} in steps code
+             */
             findFailsAnnotationInStackTrace(throwable).ifPresent(fails -> {
+                /**
+                 * When found, add it to annotations of the method context
+                 */
                 methodContext.addAnnotation(fails);
-                handleFailsAnnotation(event);
+
+                markAsExpectedFailedIfPossible(event);
             });
         }
-
     }
 
-    private void handleFailsAnnotation(MethodEndEvent event) {
+    private void handleCucumberTag(String tag, MethodEndEvent event) {
+        /**
+         * When the cucumber @Fails annotation is present on a scenario
+         */
+        if (tag.equals("@Fails")) {
+            /**
+             * The cucumber @Fails annotation doesn't provide any more information,
+             * thats why we just map it to an empty {@link Fails}
+             */
+            event.getMethodContext().addAnnotation(emptyFailsAnnotation);
+            markAsExpectedFailedIfPossible(event);
+        }
+    }
+
+    /**
+     * Mark the method as {@link TestStatusController.Status#FAILED_EXPECTED} when it actually failed
+     */
+    private void markAsExpectedFailedIfPossible(MethodEndEvent event) {
         if (event.isFailed()) {
             Method method = event.getMethod();
             MethodContext methodContext = event.getMethodContext();
@@ -108,14 +131,10 @@ public class CucumberTagListener implements MethodEndEvent.Listener, Loggable {
         }
     }
 
-    private void handleTag(String tag, MethodEndEvent event) {
-        // Direct cucumber fails annotation on scenario
-        if (tag.equals("@Fails")) {
-            event.getMethodContext().addAnnotation(emptyFailsAnnotation);
-            handleFailsAnnotation(event);
-        }
-    }
-
+    /**
+     * This method search recursive for {@link Fails} annotations in the
+     * given stack trace of {@link Throwable} and all it's root causes.
+     */
     private Optional<Fails> findFailsAnnotationInStackTrace(Throwable throwable) {
         while (throwable != null) {
             for (StackTraceElement stackTraceElement : throwable.getStackTrace()) {
