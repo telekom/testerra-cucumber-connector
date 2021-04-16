@@ -47,7 +47,7 @@ public class CucumberTagListener implements MethodEndEvent.Listener, Loggable {
     private final Fails emptyFailsAnnotation = new Fails() {
         @Override
         public Class<? extends Annotation> annotationType() {
-            return null;
+            return Fails.class;
         }
 
         @Override
@@ -81,7 +81,8 @@ public class CucumberTagListener implements MethodEndEvent.Listener, Loggable {
     public void onMethodEnd(MethodEndEvent event) {
         MethodContext methodContext = event.getMethodContext();
         methodContext.getParameterValues().stream()
-                .filter(o -> o instanceof PickleWrapper).map(e -> (PickleWrapper) e)
+                .filter(o -> o instanceof PickleWrapper)
+                .map(e -> (PickleWrapper) e)
                 .findFirst()
                 .ifPresent(pickleWrapper -> {
                     List<String> tags = pickleWrapper.getPickle().getTags();
