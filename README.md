@@ -1,15 +1,15 @@
 # Testerra Cucumber Connector
 
 <p align="center">
+    <a href="https://mvnrepository.com/artifact/io.testerra/cucumber-connector" title="MavenCentral"><img src="https://img.shields.io/maven-central/v/io.testerra/cucumber-connector?label=Maven%20Central"></a>
     <a href="/../../commits/" title="Last Commit"><img src="https://img.shields.io/github/last-commit/telekom/testerra-cucumber-connector?style=flat"></a>
     <a href="/../../issues" title="Open Issues"><img src="https://img.shields.io/github/issues/telekom/testerra-cucumber-connector?style=flat"></a>
     <a href="./LICENSE" title="License"><img src="https://img.shields.io/badge/License-Apache%202.0-green.svg?style=flat"></a>
 </p>
 
 <p align="center">
-  <a href="#installation">Installation</a> •
+  <a href="#setup">Setup</a> •
   <a href="#documentation">Documentation</a> •
-  <a href="#development">Development</a> •
   <a href="#support-and-feedback">Support</a> •
   <a href="#how-to-contribute">Contribute</a> •
   <a href="#contributors">Contributors</a> •
@@ -18,23 +18,27 @@
 
 ## About this module
 
+This module provides additional features for [Testerra Framework](https://github.com/telekom/testerra) for automated tests.
+
 This module provides you the opportunity to use Cucumber and Gherkin to specify `.feature` files and combine it with the advantages
 of Testerra, like reporting, WebDriver management, GuiElement and other. The module will register automatically by
 using `ModuleHook`.
 
-## Requirements
+## Setup
 
-* Testerra in Version `2.0-RC-1`
-* Compiled against Cucumber: `5.6.0`
+### Requirements
 
-## Usage
+![Maven Central](https://img.shields.io/maven-central/v/io.testerra/core/2.0?label=Testerra)
+![Maven Central](https://img.shields.io/maven-central/v/io.cucumber/cucumber-java/5.6.0?label=Cucumber)
+
+### Usage
 
 Include the following dependency in your project.
 
 Gradle:
 
 ```groovy
-implementation 'eu.tsystems.mms.tic.testerra:cucumber-connector:2.0-RC-1'
+implementation 'io.testerra:cucumber-connector:2.0'
 
 cucumberVersion = '5.6.0'
 implementation 'io.cucumber:cucumber-java:' + cucumberVersion
@@ -47,9 +51,9 @@ Maven:
 
 ```xml
 <dependency>
-  <groupId>eu.tsystems.mms.tic.testerra</groupId>
+  <groupId>io.testerra</groupId>
   <artifactId>cucumber-connector</artifactId>
-  <version>2.0-RC-1</version>
+  <version>1.0-RC-3</version>
 </dependency>
 <dependency>
   <groupId>io.cucumber</groupId>
@@ -63,7 +67,7 @@ Maven:
 </dependency>
 ```
 
-## Setup
+## Documentation
 
 The Cucumber connector provide some simple utilities for extending Cucumber with Testerra by using their defaults for TestNG
 enhancement. You have to set up a test class and importing the Testerra Cucumber connector report plugin,
@@ -91,9 +95,9 @@ public class RunTesterraCucumberTest extends AbstractTestNGCucumberTests {
 You can then write down your `.feature` files and store them into the `src/test/resources/features/` directory, and the associated
 glue code in `src/test/java/steps` for example.
 
-## Features
+### Features
 
-### Fails tag
+#### Fails tag
 
 Similar to the `@Fails` annotation from Testerra an `@Fails` tag can be added to Scenarios that have known bugs. This will mark them
 as expected failed in the report and add a message if the scenario is successful again. This doesn't allow adding a description of
@@ -104,14 +108,14 @@ automatically.
 To use `@Fails` from Testerra on steps definitions the step definitions are required to be in a package which has
 `eu.tsystems.mms.tic` as prefix.
 
-## Demo
+### Demo
 
 Feel free to try out our little project 'Google Search' from the Testerra Cucumber connector repository on Github. It is a complete
 Cucumber project and demonstrates the integration.
 
 You will find the showcase in the folder `src/test/java`.
 
-## Known Issues
+### Known Issues
 
 - All features are group as one class in the Testerra report.
 - Screenshots of failed tests will be taken after Cucumber @after (method,steps). Current implementation will most likely take two
@@ -122,32 +126,24 @@ You will find the showcase in the folder `src/test/java`.
 
 ## Publication
 
-### ... to a Maven repo
+This module is deployed and published to Maven Central. All JAR files are signed via Gradle signing plugin.
 
-_Publishing to local repo_
-```shell
-gradle publishToMavenLocal
-```
+The following properties have to be set via command line or ``~/.gradle/gradle.properties``
 
-_Publishing to remote repo_
-```shell
-gradle publish -DdeployUrl=<repo-url> -DdeployUsername=<repo-user> -DdeployPassword=<repo-password>
-```
+| Property                      | Description                                         |
+| ----------------------------- | --------------------------------------------------- |
+| `moduleVersion`               | Version of deployed module, default is `1-SNAPSHOT` |
+| `deployUrl`                   | Maven repository URL                                |
+| `deployUsername`              | Maven repository username                           |
+| `deployPassword`              | Maven repository password                           |
+| `signing.keyId`               | GPG private key ID (short form)                     |
+| `signing.password`            | GPG private key password                            |
+| `signing.secretKeyRingFile`   | Path to GPG private key                             |
 
-_Set a custom version_
-```shell
-gradle publish -DmoduleVersion=<version>
-```
-### ... to GitHub Packages
-
-Some hints for using GitHub Packages as Maven repository
-
-* Deploy URL is https://maven.pkg.github.com/OWNER/REPOSITRY
-* As password generate an access token and grant permissions to ``write:packages`` (Settings -> Developer settings -> Personal access token)
-
-## Documentation
-
-Check out our comprehensive [Testerra documentation](http://docs.testerra.io)!
+If all properties are set, call the following to build, deploy and release this module:
+````shell
+gradle publish closeAndReleaseRepository
+````
 
 ## Code of Conduct
 
@@ -168,15 +164,6 @@ The following channels are available for discussions, feedback, and support requ
 | ------------------------ | ------------------------------------------------------ |
 | **Issues**   | <a href="/../../issues/new/choose" title="Issues"><img src="https://img.shields.io/github/issues/telekom/testerra-cucumber-connector?style=flat"></a> |
 | **Other Requests**    | <a href="mailto:testerra@t-systems-mms.com" title="Email us"><img src="https://img.shields.io/badge/email-CWA%20team-green?logo=mail.ru&style=flat-square&logoColor=white"></a>   |
-
-
-## Repositories
-
-| Repository          | Description                                                           |
-| ------------------- | --------------------------------------------------------------------- |
-| [testerra] | Testerra |
-
-[testerra]: https://github.com/telekom/testerra
 
 ## How to Contribute
 
