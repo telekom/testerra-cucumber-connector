@@ -28,7 +28,7 @@ using `ModuleHook`.
 
 ### Requirements
 
-![Maven Central](https://img.shields.io/maven-central/v/io.testerra/core/1.0-RC-32?label=Testerra)
+![Maven Central](https://img.shields.io/maven-central/v/io.testerra/driver-ui/1.0.0?label=Testerra-Driver-UI)
 ![Maven Central](https://img.shields.io/maven-central/v/io.cucumber/cucumber-java/5.6.0?label=Cucumber)
 
 ### Usage
@@ -38,7 +38,7 @@ Include the following dependency in your project.
 Gradle:
 
 ```groovy
-implementation 'io.testerra:cucumber-connector:1.0'
+implementation 'io.testerra:cucumber-connector:1.0.0'
 
 cucumberVersion = '5.6.0'
 implementation 'io.cucumber:cucumber-java:' + cucumberVersion
@@ -53,7 +53,7 @@ Maven:
 <dependency>
   <groupId>io.testerra</groupId>
   <artifactId>cucumber-connector</artifactId>
-  <version>1.0</version>
+  <version>1.0.0</version>
 </dependency>
 <dependency>
   <groupId>io.cucumber</groupId>
