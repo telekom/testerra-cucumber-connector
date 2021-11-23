@@ -31,7 +31,7 @@ using `ModuleHook`.
 | Cucumber connector   | Testerra      |
 | -------------------- | --------------|
 | `1.0.0`          | `1.0..1.8`  |
-| `1.1`          | `1.9`  |
+| `1.1`          | `>=1.9`  |
 
 ![Maven Central](https://img.shields.io/maven-central/v/io.cucumber/cucumber-java/5.6.0?label=Cucumber)
 
