@@ -12,6 +12,14 @@ public class GoogleSearchPage extends Page {
 
     public GoogleSearchPage(WebDriver driver) {
         super(driver);
+        this.acceptTerms();
+    }
+
+    private void acceptTerms() {
+        GuiElement acceptButton = new GuiElement(getWebDriver(), By.xpath("//button/div[contains(text(), 'Ich stimme zu') or contains(text(), 'Alle akzeptieren')]"));
+        if (acceptButton.waits().waitForIsDisplayed()) {
+            acceptButton.click();
+        }
     }
 
     public GoogleSearchResultPage searchTerm(String term) {
