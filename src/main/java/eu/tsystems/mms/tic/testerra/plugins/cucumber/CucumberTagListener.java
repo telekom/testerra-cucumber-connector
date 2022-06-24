@@ -38,9 +38,6 @@ import java.util.Optional;
  * Listener that gets registered by Scenarios with the @Fails tag.
  * <p>
  * Sets the method status to expected failed if the test failed.
- * <p>
- * If the test was successful it Adds an info with the scenario name to the dashboard and adds a priority message to the
- * method context.
  */
 public class CucumberTagListener implements MethodEndEvent.Listener, Loggable {
 
