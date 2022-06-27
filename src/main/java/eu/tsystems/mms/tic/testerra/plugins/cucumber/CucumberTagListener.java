@@ -25,7 +25,7 @@ import com.google.common.eventbus.Subscribe;
 import eu.tsystems.mms.tic.testframework.annotations.Fails;
 import eu.tsystems.mms.tic.testframework.events.MethodEndEvent;
 import eu.tsystems.mms.tic.testframework.logging.Loggable;
-import eu.tsystems.mms.tic.testframework.report.TestStatusController;
+import eu.tsystems.mms.tic.testframework.report.Status;
 import eu.tsystems.mms.tic.testframework.report.model.context.MethodContext;
 import io.cucumber.testng.PickleWrapper;
 
@@ -38,9 +38,6 @@ import java.util.Optional;
  * Listener that gets registered by Scenarios with the @Fails tag.
  * <p>
  * Sets the method status to expected failed if the test failed.
- * <p>
- * If the test was successful it Adds an info with the scenario name to the dashboard and adds a priority message to the
- * method context.
  */
 public class CucumberTagListener implements MethodEndEvent.Listener, Loggable {
 
@@ -121,13 +118,12 @@ public class CucumberTagListener implements MethodEndEvent.Listener, Loggable {
     }
 
     /**
-     * Mark the method as {@link TestStatusController.Status#FAILED_EXPECTED} when it actually failed
+     * Mark the method as {@link Status#FAILED_EXPECTED} when it actually failed
      */
     private void markAsExpectedFailedIfPossible(MethodEndEvent event) {
         if (event.isFailed()) {
-            Method method = event.getMethod();
             MethodContext methodContext = event.getMethodContext();
-            TestStatusController.setMethodStatus(methodContext, TestStatusController.Status.FAILED_EXPECTED, method);
+            methodContext.setStatus(Status.FAILED_EXPECTED);
         }
     }
 

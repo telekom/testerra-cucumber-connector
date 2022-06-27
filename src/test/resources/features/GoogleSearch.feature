@@ -13,3 +13,4 @@ Feature: google search
       | Wikipedia  | Wikipedia, die freie Enzyklopädie                    |
       | tagesschau | Tagesschau                                           |
       | heise      | heise online - IT-News, Nachrichten und Hintergründe |
+      | foobar     | Invalid                                              |

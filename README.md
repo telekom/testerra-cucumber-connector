@@ -28,7 +28,11 @@ using `ModuleHook`.
 
 ### Requirements
 
-![Maven Central](https://img.shields.io/maven-central/v/io.testerra/core/2.0?label=Testerra)
+| Cucumber connector   | Testerra      |
+| -------------------- | --------------|
+| `1.0.0`          | `1.0..1.8`  |
+| `1.1`          | `>=1.9`  |
+
 ![Maven Central](https://img.shields.io/maven-central/v/io.cucumber/cucumber-java/5.6.0?label=Cucumber)
 
 ### Usage
@@ -53,7 +57,7 @@ Maven:
 <dependency>
   <groupId>io.testerra</groupId>
   <artifactId>cucumber-connector</artifactId>
-  <version>1.0-RC-3</version>
+  <version>2.0</version>
 </dependency>
 <dependency>
   <groupId>io.cucumber</groupId>
