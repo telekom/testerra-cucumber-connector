@@ -4,27 +4,27 @@ import eu.tsystems.mms.tic.testerra.test.cucumber.pages.GoogleSearchPage;
 import eu.tsystems.mms.tic.testerra.test.cucumber.pages.GoogleSearchResultPage;
 import eu.tsystems.mms.tic.testframework.annotations.Fails;
 import eu.tsystems.mms.tic.testframework.logging.Loggable;
-import eu.tsystems.mms.tic.testframework.pageobjects.factory.PageFactory;
-import eu.tsystems.mms.tic.testframework.webdrivermanager.WebDriverManager;
+import eu.tsystems.mms.tic.testframework.testing.PageFactoryProvider;
+import eu.tsystems.mms.tic.testframework.testing.WebDriverManagerProvider;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
-public class StepDefinitions implements Loggable {
+public class StepDefinitions implements WebDriverManagerProvider, PageFactoryProvider, Loggable {
 
     @When("the user searches for {string}")
     public void iSearchFor(String searchInput) {
-        WebDriver driver = WebDriverManager.getWebDriver();
-        GoogleSearchPage googleSearchPage = PageFactory.create(GoogleSearchPage.class, driver);
+        WebDriver driver = WEB_DRIVER_MANAGER.getWebDriver();
+        GoogleSearchPage googleSearchPage = PAGE_FACTORY.createPage(GoogleSearchPage.class, driver);
 
         googleSearchPage.searchTerm(searchInput);
     }
 
     @Then("an entry for {string} is shown")
     public void anEntryForIsShown(String resultEntryText) {
-        WebDriver driver = WebDriverManager.getWebDriver();
-        GoogleSearchResultPage googleSearchResultPage = PageFactory.create(GoogleSearchResultPage.class, driver);
+        WebDriver driver = WEB_DRIVER_MANAGER.getWebDriver();
+        GoogleSearchResultPage googleSearchResultPage = PAGE_FACTORY.createPage(GoogleSearchResultPage.class, driver);
         Assert.assertTrue(googleSearchResultPage.containsResult(resultEntryText), "The search result " + resultEntryText + " should be present.");
     }
 

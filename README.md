@@ -1,7 +1,7 @@
 # Testerra Cucumber Connector
 
 <p align="center">
-    <a href="https://mvnrepository.com/artifact/io.testerra/cucumber-connector" title="MavenCentral"><img src="https://img.shields.io/maven-central/v/io.testerra/cucumber-connector?label=Maven%20Central"></a>
+    <a href="https://mvnrepository.com/artifact/io.testerra/cucumber-connector" title="MavenCentral"><img src="https://img.shields.io/maven-central/v/io.testerra/cucumber-connector/2?label=Maven%20Central"></a>
     <a href="/../../commits/" title="Last Commit"><img src="https://img.shields.io/github/last-commit/telekom/testerra-cucumber-connector?style=flat"></a>
     <a href="/../../issues" title="Open Issues"><img src="https://img.shields.io/github/issues/telekom/testerra-cucumber-connector?style=flat"></a>
     <a href="./LICENSE" title="License"><img src="https://img.shields.io/badge/License-Apache%202.0-green.svg?style=flat"></a>
@@ -28,10 +28,11 @@ using `ModuleHook`.
 
 ### Requirements
 
-| Cucumber connector   | Testerra      |
-| -------------------- | --------------|
-| `1.0.0`          | `1.0..1.8`  |
-| `1.1`          | `>=1.9`  |
+| Cucumber connector | Testerra   |
+|--------------------|------------|
+| `1.0.0`            | `1.0..1.8` |
+| `1.1`              | `>=1.9`    |
+| `2.0`              | `>=2.0`    |
 
 ![Maven Central](https://img.shields.io/maven-central/v/io.cucumber/cucumber-java/5.6.0?label=Cucumber)
 

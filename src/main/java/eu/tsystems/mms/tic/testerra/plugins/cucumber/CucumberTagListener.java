@@ -71,6 +71,16 @@ public class CucumberTagListener implements MethodEndEvent.Listener, Loggable {
         public String[] validFor() {
             return new String[0];
         }
+
+        @Override
+        public Class<?> validatorClass() {
+            return null;
+        }
+
+        @Override
+        public String validator() {
+            return null;
+        }
     };
 
     @Subscribe

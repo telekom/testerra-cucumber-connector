@@ -1,6 +1,6 @@
 package eu.tsystems.mms.tic.testerra.plugins.cucumber;
 
-import eu.tsystems.mms.tic.testframework.report.TesterraListener;
+import eu.tsystems.mms.tic.testframework.common.Testerra;
 import eu.tsystems.mms.tic.testframework.report.model.steps.TestStep;
 import io.cucumber.plugin.ConcurrentEventListener;
 import io.cucumber.plugin.event.EventHandler;
@@ -23,7 +23,7 @@ public class TesterraReportPlugin implements ConcurrentEventListener {
     }
 
     static {
-        TesterraListener.getEventBus().register(new CucumberTagListener());
+        Testerra.getEventBus().register(new CucumberTagListener());
     }
 
 }

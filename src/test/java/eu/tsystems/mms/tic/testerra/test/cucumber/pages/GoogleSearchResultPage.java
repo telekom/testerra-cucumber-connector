@@ -1,22 +1,24 @@
 package eu.tsystems.mms.tic.testerra.test.cucumber.pages;
 
-import eu.tsystems.mms.tic.testframework.pageobjects.GuiElement;
+import eu.tsystems.mms.tic.testframework.pageobjects.UiElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class GoogleSearchResultPage extends GoogleSearchPage {
 
-    GuiElement resultElements = new GuiElement(getWebDriver(), By.cssSelector("#rso .g"));
+    private UiElement resultElements = find(By.cssSelector("#rso .g"));
 
     public GoogleSearchResultPage(WebDriver driver) {
         super(driver);
     }
 
     public boolean containsResult(String resultText) {
-        boolean resultFound = false;
-        for (GuiElement guiElement : resultElements.getList()) {
-            resultFound = resultFound || guiElement.getSubElement(By.cssSelector("a h3")).getText().toLowerCase().contains(resultText.toLowerCase());
+        for (UiElement uiElement : resultElements.list()) {
+            boolean resultFound = uiElement.find(By.cssSelector("a h3")).waitFor().text().matches(resultText).is(true);
+            if (resultFound) {
+                return true;
+            }
         }
-        return resultFound;
+        return false;
     }
 }
